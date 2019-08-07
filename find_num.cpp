@@ -1,5 +1,9 @@
 #include<iostream>
+#include<fstream>
 using namespace std;
+
+
+
 class find_arr
 {
 	int n;
@@ -16,7 +20,7 @@ class find_arr
 	}
 	void insert()
 	{
-		cout<<"enter array elements:\n";
+		//cout<<"enter array elements:\n";
 		for(int i=0;i<n;i++)
 		{cin>>arr[i];}	
 	}
@@ -40,25 +44,26 @@ class find_arr
 };
 int main()
 {
+	freopen("input.txt","r",stdin);
 	int t;
-	cout<<"enter no. of test cases: ";
+	//cout<<"enter no. of test cases: ";
 	cin>>t;
 	while(t--)
 	{	
 		int n;
-		cout<<"enter no. of array elements: ";
+		//cout<<"enter no. of array elements: ";
 		cin>>n;
+		int x;
+		//cout<<"enter no. to be searched: ";
+		cin>>x;
 		find_arr o(n);
 		o.insert();
-		int x;
-		cout<<"enter no. to be searched: ";
-		cin>>x;
 		bool q=o.find(x);
 		if(q)
 		{cout<<"1\n";}
 		else
-		{cout<<"-1\n";}		
-			
+		{cout<<"-1\n";}				
 	}
+	
 	return 0;
 }
