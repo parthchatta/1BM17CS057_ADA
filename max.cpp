@@ -8,10 +8,12 @@ class max_arr
 	public:
 	max_arr(int n)
 	{
-		arr=new int[n];
+		this->n=n;
+		arr=new int[this->n];
 	}
 	void insert()
 	{
+		cout<<"enter array elements:\n";
 		for(int i=0;i<n;i++)
 		{
 			cin>>arr[i];
@@ -30,10 +32,11 @@ class max_arr
 int main()
 {
 	int n;
+	cout<<"enter no. of array elements: ";
 	cin>>n;
 	max_arr o(n);
 	o.insert();
 	int m=o.max();
-	cout<<"max number is:"<<n<<endl;
+	cout<<"max number is:"<<m<<endl;
 	return 0;
 }
