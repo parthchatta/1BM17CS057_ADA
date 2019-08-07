@@ -11,6 +11,10 @@ class max_arr
 		this->n=n;
 		arr=new int[this->n];
 	}
+	~max_arr()
+	{
+		delete arr;
+	}
 	void insert()
 	{
 		cout<<"enter array elements:\n";
