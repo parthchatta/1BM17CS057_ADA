@@ -31,6 +31,7 @@ int search(int a[],int n,int k)
 	while(l<=h)
 	{
 		int mid=(h+l)/2;
+		cout<<"<"<<mid<<">\n";
 		if(a[mid]==k)
 		{
 			return mid;
@@ -49,6 +50,7 @@ int search(int a[],int n,int k)
 }
 int main()
 {
+	freopen("input.txt","r",stdin);
 	int t;
 	cin >> t;
 	while(t--)
@@ -65,9 +67,12 @@ int main()
 		int index2=search(a+p+1,n-p-1,k);
 		if(index==-1)
 		{
-			cout<<index2<<"\n";
+			if(index2!=-1)
+				cout<<index2+p+1<<"\n";
+			else
+				cout<<index2;
 		}
-		else
+		else 
 		{
 			cout<<index<<"\n";
 		}
