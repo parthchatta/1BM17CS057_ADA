@@ -6,19 +6,21 @@ int bs(int a[],int n)
 	while(l<=h)
 	{
 		int mid=(h+l)/2;
-		cout<<"<"<<mid<<">\n";
-		if(a[mid]>a[(mid+1)%n] && a[mid]>a[(mid-1)%n] )
+		//cout<<"<"<<mid<<">\n";
+		if (mid<h && arr[mid]>arr[mid+1])
 		{
 			return mid;
 		}
-		else
+		if (mid>l && arr[mid]<arr[mid-1])
 		{
-			l=(mid+1)%n;
-			if(l==0)
-			{
-				h=(mid-1)%n;
-			}
+			return mid-1;
 		}
+		if (arr[l]>=arr[mid]) 
+		{
+    			return findPivot(arr,l,mid-1);
+		}
+			
+		return findPivot(arr,mid+1,h);
 		
 	}
 	return 0;
