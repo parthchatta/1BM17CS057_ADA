@@ -1,6 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+void swap(int *a,int *b)
+{
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+}
 int bubble_sort(int a[],int n)
 {
     int c=0;
@@ -9,8 +14,8 @@ int bubble_sort(int a[],int n)
         for(int j=0;j<n-i-1;j++)
         {
             c++;
-            //if(a[j]>a[j+1])
-            //  swap(&a[j],&a[j+1]);
+            if(a[j]>a[j+1])
+              swap(&a[j],&a[j+1]);
         }
     }
     return c;
@@ -25,10 +30,10 @@ int selection_sort(int a[],int n)
         for(int j=i+1;j<n;j++)
         {
             c++;
-            //if(a[j]<a[k])
-            //    k=j;
+            if(a[j]<a[k])
+               k=j;
         }
-        //swap(&a[i],&a[k])
+        swap(&a[i],&a[k]);
     }
     return c;
 }
@@ -91,19 +96,35 @@ int  merge_sort(int a[],int l,int h)
 
 }
 
-
+void print(int a[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        cout<<a[i]<<" ";
+    }
+}
 
 
 int main(){
     int n;
     cin>>n;
-    int a[n];
+    int a[n],b[n],c[n];
     for(int i=0;i<n;i++)
-        cin>>a[i];
+    {
+       cin>>a[i];
+       b[i]=a[i];
+       c[i]=a[i];
+    }
+
     int count1=selection_sort(a,n);
-    int count2=bubble_sort(a,n);
-    int count3=merge_sort(a,0,n-1);
-    cout<<"\nbubble sort comparisons: "<<count1<<"\n selection sort comparisons: "<<count2<<" \n merge sort comparisons: "<<count3;
+    int count2=bubble_sort(b,n);
+    int count3=merge_sort(c,0,n-1);
+    cout<<"\nbubble sort comparisons: "<<count1<<endl;
+    print(a,n);
+    cout<<"\nselection sort comparisons: "<<count2<<endl;
+    print(b,n);
+    cout<<"\nmerge sort comparisons: "<<count3<<endl;
+    print(c,n);
     return 0;
 
 }
