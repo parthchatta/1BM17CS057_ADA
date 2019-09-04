@@ -1,65 +1,55 @@
 #include<bits/stdc++.h>
 using namespace std;
-class graph{
-    int v;
+
+class Graph
+{
+    int V;
     list<int> *adj;
-    public:
-    graph(int v){
-        this->v=v;
-        adj=new list<int>[v];
-    }
-
-    void add_edge(int m,int n){
-        adj[m].push_back(n);
-    }
-
-    void DFS()
+    void DFSUtil(int v, bool visited[])
     {
-        cout<<"h";
-        stack<int> s;
-        vector<bool> visited(v,false);
-        //cout<<start;
-        for(int i=1;i<=10;i++)
+        visited[v] = true;
+        cout << v << " ";
+        list<int>::iterator i;
+        for(i = adj[v].begin(); i != adj[v].end(); ++i)
+        if(!visited[*i])
+            DFSUtil(*i, visited);
+    }
+    public:
+    Graph(int V)
+    {
+        this->V=V;
+        adj=new list<int>[V];
+    }
+    void addEdge(int v,int w)
+    {
+        adj[v].push_back(w);
+        adj[w].push_back(v);
+    }
+    void connectedComponents()
+    {
+        bool *visited = new bool[V];
+        for(int v = 0; v < V; v++)
+        visited[v] = false;
+        for (int v=0; v<V; v++)
         {
-            if(visited[i]==false)
+            if (visited[v] == false)
             {
-            s.push(i);
+            DFSUtil(v, visited);
+            cout << "\n";
             }
-
-            while(!s.empty())
-            {
-                int vertex=s.top();
-                //cout<<vertex;
-                s.pop();
-                if(visited[vertex]==false){
-                    cout<<vertex<<" ";
-                    visited[vertex]=true;
-                }
-                for(auto i=adj[vertex].begin();i!=adj[vertex].end();++i){
-                    if(visited[*i]==false){
-                        s.push(*i);
-                    }
-                i++;
-                }
-
-            }
-
         }
-}
+    }
+
 };
 
 int main()
 {
-    graph g(5);
-    g.add_edge(1,2);
-    g.add_edge(1,3);
-    g.add_edge(2,3);
-    g.add_edge(3,4);
-   // g.add_edge(8,9);
-    //g.add_edge(5,6);
-    //g.add_edge(6,7);
-    cout<<"start\n";
-    g.DFS();
-    cout<<"\nend";
+
+    Graph g(5);
+    g.addEdge(1, 0);
+    g.addEdge(2, 3);
+    g.addEdge(3, 4);
+    cout << "connected components are: \n";
+    g.connectedComponents();
     return 0;
 }
