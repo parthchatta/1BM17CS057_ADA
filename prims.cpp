@@ -42,7 +42,7 @@ int main()
         }
         if(elec[v]!=1)
         {
-            cout<<u<<"--"<<v<<"--"<<cmin<<endl;
+            cout<<"("<<u<<","<<v<<") --> "<<cmin<<endl;
             elec[v]=1;
             ne=ne+1;
             mincost=mincost+cmin;
